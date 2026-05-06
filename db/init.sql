@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS sensor_dht11 (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    temperatura FLOAT,
+    humedad FLOAT,
+    fecha_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

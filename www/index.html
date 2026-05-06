@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photos-Medidor de Humedad</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/mqtt@5.0.0/dist/mqtt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌱 Photos 🌿</h1>
+            <div id="mqttStatus" class="mqtt-status mqtt-connecting">🔄 Conectando a EMQX...</div>
+        </div>
+
+        <div class="grid-2">
+            <div class="card">
+                <div class="card-title">🪴 DETALLES DE LA PLANTA</div>
+                <div class="planta-nombre"> Epipremnum aureum "Photos"</div>
+                <div class="indicadores">
+                    <div class="indicador">
+                        <div class="indicador-valor" id="humedadSuelo">--</div>
+                        <div class="indicador-label">Humedad Suelo</div>
+                    </div>
+                    <div class="indicador">
+                        <div class="indicador-valor" id="fuerza">--</div>
+                        <div class="indicador-label">Fuerza</div>
+                    </div>
+                    <div class="indicador">
+                        <div class="indicador-valor" id="salud">--</div>
+                        <div class="indicador-label">Salud</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🌡️ LECTURA ACTUAL</div>
+                <div class="lectura-actual">
+                    <div class="lectura-item">
+                        <div class="lectura-valor temperatura" id="tempActual">--</div>
+                        <div class="lectura-label">Temperatura °C</div>
+                    </div>
+                    <div class="lectura-item">
+                        <div class="lectura-valor humedad" id="humActual">--</div>
+                        <div class="lectura-label">Humedad %</div>
+                    </div>
+                </div>
+                <div class="fecha-lectura" id="fechaActual">Esperando primer dato...</div>
+            </div>
+        </div>
+
+        <div class="grafica-container">
+            <div class="card-title">📊 HISTORIAL DE LECTURAS</div>
+            <canvas id="graficaHistorial"></canvas>
+        </div>
+
+        <div class="tabla-container">
+            <div class="card-title">📋 REGISTRO DE DATOS</div>
+            <table>
+                <thead><tr><th>Hora</th><th>Temperatura (°C)</th><th>Humedad (%)</th></tr></thead>
+                <tbody id="tablaRegistro"><tr><td colspan="3">Esperando datos...</td></tr></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

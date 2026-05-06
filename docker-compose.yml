@@ -1,0 +1,63 @@
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_USER: sensor
+      MYSQL_PASSWORD: sensor123
+      MYSQL_DATABASE: iot_db
+    ports:
+      - "4000:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./db:/docker-entrypoint-initdb.d
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "4001:80"
+    environment:
+      PMA_HOST: mariadb
+
+  dashboard:
+    image: nginx:alpine
+    container_name: dashboard
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./www:/usr/share/nginx/html
+
+  api:
+    container_name: api
+    build: ./api
+    restart: always
+    ports:
+      - "5000:80"
+    depends_on:
+      - mariadb
+    environment:
+      DB_HOST: mariadb
+      DB_USER: sensor
+      DB_PASSWORD: sensor123
+      DB_NAME: iot_db
+
+  emqx:
+    container_name: emqx
+    image: emqx/emqx:latest
+    restart: always
+    ports:
+      - "1883:1883"      # MQTT
+      - "8083:8083"      # WebSocket MQTT (para el dashboard)
+      - "8084:8084"      # WebSocket MQTT seguro
+      - "18083:18083"    # Dashboard web
+    environment:
+      EMQX_DASHBOARD__DEFAULT_USER__LOGIN: "admin"
+      EMQX_DASHBOARD__DEFAULT_USER__PASSWORD: "plantita123"
+      
+volumes:
+  mariadb_data:

@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #e8f5e9;
+    padding: 24px;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.header h1 {
+    font-size: 2rem;
+    color: #2e7d32;
+}
+
+.mqtt-status {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    margin-top: 10px;
+}
+
+.mqtt-online { background: #43a047; color: white; }
+.mqtt-offline { background: #e53935; color: white; }
+.mqtt-connecting { background: #fb8c00; color: white; }
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.card {
+    background: white;
+    border-radius: 24px;
+    padding: 24px;
+    border: 1px solid #c8e6c9;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2e7d32;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #c8e6c9;
+}
+
+.planta-nombre {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1b5e20;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.indicadores {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.indicador-valor {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.indicador-label {
+    font-size: 0.75rem;
+    color: #6b6b6b;
+}
+
+.excelente { color: #2e7d32; }
+.bueno { color: #558b2f; }
+.atencion { color: #ef6c00; }
+.critico { color: #c62828; }
+
+.lectura-actual {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.lectura-valor {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.temperatura { color: #e65100; }
+.humedad { color: #0288d1; }
+
+.fecha-lectura {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 0.75rem;
+    color: #8d8d8d;
+}
+
+.grafica-container, .tabla-container {
+    background: white;
+    border-radius: 24px;
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid #c8e6c9;
+}
+
+canvas {
+    max-height: 280px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    padding: 12px 8px;
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #e8f5e9;
+}
+
+@keyframes fadePulse {
+    0% { background-color: transparent; }
+    50% { background-color: #c8e6c9; }
+    100% { background-color: transparent; }
+}
+
+.nuevo-dato {
+    animation: fadePulse 0.5s ease;
+}
+
+@media (max-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    body { padding: 16px; }
+}
